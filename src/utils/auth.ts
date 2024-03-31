@@ -24,6 +24,4 @@ export function checkLogin() {
   const token = getToken();
   return token !== undefined && token !== null && token.length > 0;
 }
-export async function fetchToken(queryClient: QueryClient) {
-  return queryClient.ensureQueryData(authQueryOptions());
-}
+

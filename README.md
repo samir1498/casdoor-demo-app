@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+# Casdoor Demo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains a demo React application integrated with Casdoor for user authentication and authorization.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started with the demo application, follow these steps:
 
-## Expanding the ESLint configuration
+1. **Clone the Repository:**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+   ```bash
+   git clone https://github.com/samir1498/casdoor-demo-app.git
+   cd casdoor-demo-app
+   ```
 
-- Configure the top-level `parserOptions` property like this:
+2. **Install Dependencies:**
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+   ```bash
+   pnpm install
+   ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. **Start the Development Server:**
+
+   ```bash
+   pnpm run dev
+   ```
+
+   This command launches your React development server, usually accessible at [http://localhost:3000](http://localhost:5173).
+
+## Setting Up Casdoor with Docker
+
+Get Casdoor running with Docker for a streamlined experience:
+
+1. **Ensure Docker is Installed:** Verify and install Docker from [https://www.docker.com/](https://www.docker.com/).
+
+2. **Run the Casdoor Container:** Launch a Casdoor container with the provided command:
+
+   ```bash
+   docker run -p 8000:8000 casbin/casdoor-all-in-one
+   ```
+
+   This command runs a Casdoor container and maps its port 8000 to your host machine's port 8000. You can access the Casdoor web interface by opening [http://localhost:8000](http://localhost:8000) in your web browser.
+
+   **Default Login Credentials:**
+
+   - **Username:** admin
+   - **Password:** 123
+
+   Change these credentials after setup for security.
+
+3. **Configure Casdoor:**
+
+   After accessing Casdoor's web interface, follow these steps to set up your organization, application, users, and roles:
+
+   - **Create Organization:** Create a new organization for your application.
+   - **Create Application:** Inside your organization, create a new application for your React application.
+   - **Define Roles:** Define the necessary roles for your application (e.g., admin, user).
+   - **Create Users:** Add users to your organization and assign them roles as needed.
+
+   Configuring these elements in Casdoor will enable authentication and authorization functionalities for your demo application.

@@ -1,5 +1,5 @@
 // auth.ts
-import { QueryClient, queryOptions } from "@tanstack/react-query";
+import { queryOptions } from "@tanstack/react-query";
 import { CasdoorSDK } from "../Setting";
 
 export type auth = {
@@ -24,4 +24,3 @@ export function checkLogin() {
   const token = getToken();
   return token !== undefined && token !== null && token.length > 0;
 }
-

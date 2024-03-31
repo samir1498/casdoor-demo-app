@@ -56,5 +56,3 @@ Get Casdoor running with Docker for a streamlined experience:
    - **Create Application:** Inside your organization, create a new application for your React application.
    - **Define Roles:** Define the necessary roles for your application (e.g., admin, user).
    - **Create Users:** Add users to your organization and assign them roles as needed.
-
-   Configuring these elements in Casdoor will enable authentication and authorization functionalities for your demo application.

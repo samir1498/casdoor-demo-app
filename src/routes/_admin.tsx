@@ -1,17 +1,11 @@
 // src/routes/_admin.tsx
-import {
-  Navigate,
-  Outlet,
-  createFileRoute,
-  useRouteContext,
-} from "@tanstack/react-router";
+import { Navigate, Outlet, createFileRoute } from "@tanstack/react-router";
 
-import { userQueryOptions } from "../domain/entities/user";
-import { AuthUseCase } from "../domain/usecases/AuthUseCase";
+import { userQueryOptions } from "../utils/user";
+import { checkLogin, getToken } from "../utils/auth";
 
 function AdminProtectedRoute() {
-  const context = useRouteContext({ from: "/_admin" });
-  const isLoggedIn = AuthUseCase.checkLogin(context.queryClient);
+  const isLoggedIn = checkLogin();
   const user = Route.useLoaderData();
 
   const isAdmin = user?.roles?.includes("admin");
@@ -19,14 +13,19 @@ function AdminProtectedRoute() {
   if (!isLoggedIn || !isAdmin) {
     sessionStorage.setItem("redirect", location.pathname);
 
-    return <Navigate to="/login" search={{ redirect: location.href }} />;
+    return (
+      <Navigate
+        to="/login"
+        search={{ redirect: location.href, error: "Not authorized" }}
+      />
+    );
   }
   return <Outlet />;
 }
 export const Route = createFileRoute("/_admin")({
   component: () => <AdminProtectedRoute />,
   loader: async ({ context }) => {
-    const token = AuthUseCase.getToken(context.queryClient);
+    const token = getToken();
     const user = await context.queryClient.ensureQueryData(
       userQueryOptions(token ?? "")
     );

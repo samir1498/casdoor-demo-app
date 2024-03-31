@@ -1,15 +1,9 @@
 // src/routes/_user.tsx
-import {
-  Navigate,
-  Outlet,
-  createFileRoute,
-  useRouteContext,
-} from "@tanstack/react-router";
-import { AuthUseCase } from "../domain/usecases/AuthUseCase";
+import { Navigate, Outlet, createFileRoute } from "@tanstack/react-router";
+import { checkLogin } from "../utils/auth";
 
 function UserProtectedRoute() {
-  const context = useRouteContext({ from: "/_user" });
-  const isLoggedIn = AuthUseCase.checkLogin(context.queryClient);
+  const isLoggedIn = checkLogin();
 
   if (!isLoggedIn) {
     sessionStorage.setItem("redirect", location.pathname);

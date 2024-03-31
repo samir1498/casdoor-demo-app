@@ -38,6 +38,7 @@ function Layout() {
       </div>
       <hr />
       <Outlet />
+      <TanStackRouterDevtools />
     </>
   );
 }
